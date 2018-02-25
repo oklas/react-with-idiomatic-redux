@@ -5375,6 +5375,12 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-breadcrumbs-dynamic@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/react-breadcrumbs-dynamic/-/react-breadcrumbs-dynamic-1.0.14.tgz#9ddb1a2391284cbdd11b59f26c78d3a4449d202d"
+  dependencies:
+    react-through "^1.0.3"
+
 react-dev-utils@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-5.0.0.tgz#425ac7c9c40c2603bc4f7ab8836c1406e96bb473"
@@ -5488,6 +5494,10 @@ react-scripts@^1.1.1:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "^1.1.3"
+
+react-through@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-through/-/react-through-1.0.3.tgz#cdb291cf02d9b4d131c164f2b5f251ae237046d7"
 
 react@^16.2.0:
   version "16.2.0"

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import * as actions from "../actions";
-import { getVisibleTodos, getIsFetching, getErrorMessage } from "../reducers";
+import * as actions from "../../actions";
+import { getVisibleTodos, getIsFetching, getErrorMessage } from "../../reducers";
 import TodoList from "./TodoList";
-import FetchError from "./FetchError";
+import FetchError from "../FetchError";
 
 class VisibleTodoList extends Component {
     componentDidMount() {

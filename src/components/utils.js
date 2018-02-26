@@ -1,4 +1,7 @@
 import React from 'react'
+import { branch, renderComponent } from 'recompose'
+import { isLoaded } from 'react-redux-firebase'
+import Loading from './Loading'
 
 export const required = value => (value ? undefined : 'Required')
 
@@ -19,3 +22,11 @@ export const FormField = props => (
     </div>
   </span>
 )
+
+export const spinnerWhile = condition =>
+  branch(condition, renderComponent(Loading))
+
+export const spinnerWhileLoading = propNames =>
+  spinnerWhile(props =>
+    !!propNames.find(name => !isLoaded(props[name]))
+  )

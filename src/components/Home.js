@@ -7,7 +7,8 @@ const Home = () => (
   <div>
     <BreadcrumbsItem to ='home'>Dashboard</BreadcrumbsItem>
     <h1>Welcome!</h1>
-    <Link to='/todo'>TODO</Link>
+    <div><Link to='/account'>Account</Link></div>
+    <div><Link to='/todo'>TODO</Link></div>
   </div>
 );
 

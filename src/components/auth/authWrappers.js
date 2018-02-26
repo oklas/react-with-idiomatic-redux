@@ -6,9 +6,7 @@ import Loading from '../Loading'
 const AUTHED_REDIRECT = 'AUTHED_REDIRECT'
 const UNAUTHED_REDIRECT = 'UNAUTHED_REDIRECT'
 
-const locationHelper = locationHelperBuilder({
-  locationSelector: props => props.location
-})
+const locationHelper = locationHelperBuilder({})
 
 export const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',

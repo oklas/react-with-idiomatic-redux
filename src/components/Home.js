@@ -1,6 +1,7 @@
 import React from "react"
-import {BreadcrumbsItem} from 'react-breadcrumbs-dynamic'
-import {Link} from "react-router-dom"
+import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
+import { Link } from "react-router-dom"
+import { userIsAuthenticated } from './auth'
 
 const Home = () => (
   <div>
@@ -10,5 +11,5 @@ const Home = () => (
   </div>
 );
 
-export default Home
+export default userIsAuthenticated(Home)
 

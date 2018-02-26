@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addTodo } from "../../actions";
+import { compose, withHandlers } from 'recompose'
+import { withFirebase } from 'react-redux-firebase'
+import { withNotifications } from '../../notifications'
 
-const AddTodo = ( { dispatch } ) => {
+
+const AddTodo = ({ addTodo }) => {
     let input;
     return (
         <div>
@@ -14,7 +17,7 @@ const AddTodo = ( { dispatch } ) => {
             />
             <button
               onClick={() => {
-                  dispatch( addTodo( input.value ) );
+                  addTodo({text: input.value, completed: false});
                   input.value = "";
               }}
             >
@@ -24,7 +27,24 @@ const AddTodo = ( { dispatch } ) => {
     );
 };
 AddTodo.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    addTodo: PropTypes.func.isRequired,
 };
 
-export default connect()( AddTodo );
+const enhancer = compose(
+  withFirebase,
+  withNotifications,
+  connect(({ firebase: { profile } }) => ({
+    profile,
+  })),
+  withHandlers({
+    addTodo: ({firebase, showError}) => newTodo => (
+      firebase
+        .push('todos', newTodo)
+        .catch(err => {
+          showError('Error creating new todo: ' + error.message || error) // eslint-disable-line
+        })
+     )
+  })
+)
+
+export default enhancer( AddTodo )

@@ -11,19 +11,6 @@ export const validateEmail = value =>
     ? 'Invalid email address'
     : undefined
 
-export const FormField = props => (
-  <span>
-    <label>{props.placeholder}: </label>
-    <input {...props.input} type={props.type}/>
-    <div>
-      &nbsp;
-      { props.meta.touched && props.meta.error && 
-        <span className="error">{props.meta.error}</span>
-      }
-    </div>
-  </span>
-)
-
 export const profileAvatarUrl = profile => (
   profile.avatarUrl ||
   'https://www.gravatar.com/avatar/'+md5(profile.email||'')+'?d=mm'

@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import { FormField, required, validateEmail } from '../../utils'
+import { required, validateEmail } from '../../utils'
+import FormField from '../../FormField'
 
 export const LoginForm = ({ pristine, submitting, handleSubmit }) => (
   <form

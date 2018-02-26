@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import * as actions from "../../actions";
 import { getVisibleTodos, getIsFetching, getErrorMessage } from "../../reducers";
 import TodoList from "./TodoList";
@@ -24,7 +25,7 @@ class VisibleTodoList extends Component {
     }
 
     render() {
-        const { toggleTodo, todos, isFetching, errorMessage } = this.props;
+        const { toggleTodo, filter, todos, isFetching, errorMessage } = this.props;
 
         if ( isFetching && !todos.length ) {
             return <p>Loading...</p>;
@@ -40,10 +41,17 @@ class VisibleTodoList extends Component {
         }
 
         return (
-            <TodoList
-              todos={todos}
-              onTodoClick={toggleTodo}
-            />
+            <div>
+                { filter=='all' ? null :
+                  <BreadcrumbsItem to={filter}>
+                    {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                  </BreadcrumbsItem>
+                }
+                <TodoList
+                  todos={todos}
+                  onTodoClick={toggleTodo}
+                />
+            </div>
         );
     }
 }

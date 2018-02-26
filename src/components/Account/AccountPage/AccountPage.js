@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { profileAvatarUrl } from '../../utils'
+import { profileAvatarUrl } from '../../../utils'
 import AccountForm from '../AccountForm'
 
 export const AccountPage = ({ avatarUrl, updateAccount, profile }) => (

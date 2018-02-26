@@ -4,7 +4,7 @@ import { compose } from 'recompose'
 import { withRouter, Link } from 'react-router-dom'
 import { Breadcrumbs } from 'react-breadcrumbs-dynamic'
 import { withFirebase } from 'react-redux-firebase'
-import { profileAvatarUrl } from '../../utils'
+import { profileAvatarUrl } from '../../../utils'
 
 
 const Header = ({handleLogout, isSigned, signOut, profile}) => (

@@ -1,7 +1,7 @@
 import React from "react"
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
 import { Link } from "react-router-dom"
-import { userIsAuthenticated } from './auth'
+import { userIsAuthenticated } from '../auth'
 
 const Home = () => (
   <div>

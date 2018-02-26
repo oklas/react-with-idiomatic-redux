@@ -2,7 +2,7 @@ import React from 'react'
 import { branch, renderComponent } from 'recompose'
 import { isLoaded } from 'react-redux-firebase'
 import md5 from 'md5'
-import Loading from './Loading'
+import Loading from './components/Loading'
 
 export const required = value => (value ? undefined : 'Required')
 

@@ -1,8 +1,8 @@
 import { withFirebase } from 'react-redux-firebase'
 import { withHandlers, pure, compose } from 'recompose'
 import { withRouter } from 'react-router-dom'
-import { userIsNotAuthenticated } from '../../auth'
-import { withNotifications } from '../../notifications'
+import { userIsNotAuthenticated } from '../../../auth'
+import { withNotifications } from '../../../notifications'
 
 export default compose(
   withRouter,

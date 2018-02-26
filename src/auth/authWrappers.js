@@ -1,7 +1,7 @@
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper'
 import { withRouter } from 'react-router-dom'
-import Loading from '../Loading'
+import Loading from '../components/Loading'
 
 const AUTHED_REDIRECT = 'AUTHED_REDIRECT'
 const UNAUTHED_REDIRECT = 'UNAUTHED_REDIRECT'

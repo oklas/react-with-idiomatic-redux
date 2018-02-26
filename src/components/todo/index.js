@@ -1,6 +1,6 @@
 import React from "react";
 import {BreadcrumbsItem} from "react-breadcrumbs-dynamic";
-import { userIsAuthenticated } from '../auth'
+import { userIsAuthenticated } from '../../auth'
 import AddTodo from "./AddTodo";
 import VisibleTodoList from "./VisibleTodoList";
 import Footer from "./Footer";

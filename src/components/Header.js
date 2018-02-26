@@ -21,9 +21,15 @@ class Header extends React.Component {
         </div>
         <div style={{textAlign: 'right', width: '50%'}}>
           { isSigned ?
-            <a href="#" onClick={this.handleLogout}>Sign out</a>
+            <span>
+             <b></b>
+             <a href="#" onClick={this.handleLogout}>Sign out</a>
+            </span>
             :
-            <Link to='/login'>Sign in</Link>
+            <span>
+              <Link to='/login'>Sign in</Link> &nbsp;
+              <Link to='/signup'>Sign up</Link>
+            </span>
           }
         </div>
       </div>

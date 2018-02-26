@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import Header from './Header'
 import Login from './Login'
+import Signup from './Signup'
 import Home from './Home'
 import Todo from './todo'
 
@@ -13,6 +14,7 @@ const App = () => (
     <Route path="/" exact component={Home} />
     <Route path="/home" component={Home} />
     <Route path="/login" component={Login} />
+    <Route path="/signup" component={Signup} />
     <Route path="/todo/:filter?" component={Todo} />
   </div>
 );

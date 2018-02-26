@@ -12,7 +12,6 @@ export default compose(
   withNotifications,
   connect(({ firebase: { profile } }) => ({
     profile,
-    avatarUrl: profile.avatarUrl
   })),
   spinnerWhileLoading(['profile']),
   withHandlers({

@@ -1,6 +1,7 @@
 import React from 'react'
 import { branch, renderComponent } from 'recompose'
 import { isLoaded } from 'react-redux-firebase'
+import md5 from 'md5'
 import Loading from './Loading'
 
 export const required = value => (value ? undefined : 'Required')
@@ -21,6 +22,11 @@ export const FormField = props => (
       }
     </div>
   </span>
+)
+
+export const profileAvatarUrl = profile => (
+  profile.avatarUrl ||
+  'https://www.gravatar.com/avatar/'+md5(profile.email||'')+'?d=mm'
 )
 
 export const spinnerWhile = condition =>

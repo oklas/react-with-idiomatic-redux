@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { withRouter, Link } from 'react-router-dom'
 import { Breadcrumbs } from 'react-breadcrumbs-dynamic'
-import { firebaseConnect } from 'react-redux-firebase'
+import { withFirebase } from 'react-redux-firebase'
+import { profileAvatarUrl } from './utils'
 
 
 class Header extends React.Component {
@@ -13,16 +14,24 @@ class Header extends React.Component {
   }
 
   render() {
-    const {isSigned, signOut} = this.props
+    const {isSigned, signOut, profile} = this.props
     return (
       <div style={{display: 'flex', padding: 20}}>
+        <img
+          style={{margin: 10, height: 40}}
+          src={profileAvatarUrl(profile)}
+        />
         <div style={{textAlign: 'left', width: '50%'}}>
           <Breadcrumbs item={Link} separator=' / ' />
         </div>
         <div style={{textAlign: 'right', width: '50%'}}>
           { isSigned ?
             <span>
-             <b></b>
+             <b>
+               {profile.displayName}
+               {profile.displayName && ','}
+             </b>
+             <span> welcome </span>
              <a href="#" onClick={this.handleLogout}>Sign out</a>
             </span>
             :
@@ -44,6 +53,6 @@ const mapStateToProps = ({firebase: {auth, profile}}) => ({
 
 export default compose(
   withRouter,
-  firebaseConnect(),
+  withFirebase,
   connect(mapStateToProps),
 )(Header)

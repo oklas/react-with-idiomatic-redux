@@ -11,7 +11,7 @@ const Header = ({handleLogout, isSigned, signOut, profile}) => (
   <div style={{display: 'flex', padding: 20}}>
     <img
       style={{margin: 10, height: 40}}
-      src={profileAvatarUrl(profile)}
+      src={profileAvatarUrl(isSigned ? profile : {})}
     />
     <div style={{textAlign: 'left', width: '50%'}}>
       <Breadcrumbs item={Link} separator=' / ' />
@@ -24,7 +24,7 @@ const Header = ({handleLogout, isSigned, signOut, profile}) => (
           {profile.displayName && ','}
         </b>
         <span> welcome </span>
-        <a href="#" onClick={this.handleLogout}>Sign out</a>
+        <a href="#" onClick={handleLogout}>Sign out</a>
         </span>
       :
         <span>

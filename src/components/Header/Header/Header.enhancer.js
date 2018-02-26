@@ -13,8 +13,8 @@ export default compose(
   // Handlers as props
   withHandlers({
     handleLogout: props => () => {
-      this.props.firebase.logout()
-      this.props.history.push('/')
+      props.firebase.logout()
+      props.history.push('/')
     }
   }),
   pure // shallow equals comparison on props (prevent unessesary re-renders)

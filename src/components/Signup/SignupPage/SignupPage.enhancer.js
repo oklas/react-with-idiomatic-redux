@@ -16,6 +16,9 @@ export default compose(
     emailSignup: ({ firebase, showError }) => creds =>
       firebase
         .createUser(creds)
+        .then(() =>
+          firebase.updateProfile(creds)
+        )
         .catch(err => showError(err.message))
   }),
   pure // shallow equals comparison on props (prevent unessesary re-renders)

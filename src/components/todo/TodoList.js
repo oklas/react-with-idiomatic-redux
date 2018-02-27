@@ -7,11 +7,11 @@ const TodoList = ( {
     onTodoClick,
 } ) => (
     <ul>
-        {todos.map( todo =>
+        {todos && todos.map( todo =>
             <Todo
               key={todo.id}
-              {...todo}
-              onClick={() => onTodoClick( todo.id )}
+              {...todo.value}
+              onClick={() => onTodoClick( todo )}
             />
         )}
     </ul>

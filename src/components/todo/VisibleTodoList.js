@@ -10,7 +10,7 @@ import { spinnerWhileLoading } from '../../utils'
 import TodoList from "./TodoList";
 import FetchError from "../FetchError";
 
-const VisibleTodoList = ({toggleTodo, filter, todos}) => (
+const VisibleTodoList = ({toggleDone, filter, todos}) => (
    <div>
      { filter=='all' ? null :
        <BreadcrumbsItem to={filter}>
@@ -18,33 +18,29 @@ const VisibleTodoList = ({toggleTodo, filter, todos}) => (
        </BreadcrumbsItem>
      }
      <TodoList
-       todos={todos}
-       onTodoClick={toggleTodo}
+       todos={todos.sort((a,b)=>a.key<b.key)}
+       onTodoClick={toggleDone}
     />
   </div>
 )
 VisibleTodoList.propTypes = {
     filter: PropTypes.string.isRequired,
-    toggleTodo: PropTypes.func.isRequired,
+    toggleDone: PropTypes.func.isRequired,
     todos: PropTypes.arrayOf( PropTypes.object ).isRequired,
 };
-
-const populates = [{ child: 'createdBy', root: 'users' }]
 
 const enhancer = compose(
   withNotifications,
   withRouter,
   connect( ( {
     firebase,
-    firebase: { auth, /*data: { projects } */ },
+    firebase: { auth, ordered: { todos } },
   },
   {
     match: { params }
   }) => ({
     auth,
-    todos: Object.values(
-      populate(firebase, 'todos', populates) || {}
-    ),
+    todos,
     filter:
       params.filter !== "active" && params.filter !== "completed" ?
         'all' : params.filter,
@@ -54,7 +50,7 @@ const enhancer = compose(
     path:'todos',
     queryParams: [
       'orderByChild=completed',
-      filter=='all' ? '' : 'equalTo=' + (filter=='completed')
+      filter=='all' ? '' : 'equalTo=' + (filter=='completed'),
     ]
   }]),
   spinnerWhileLoading(['todos']),
@@ -65,7 +61,14 @@ const enhancer = compose(
         .catch(err => {
           showError('Error creating new todo: ' + error.message || error) // eslint-disable-line
         })
-     )
+    ),
+    toggleDone: props => ({key, value: {completed}}) => {
+      const { firebase, auth } = props
+      if (!auth || !auth.uid) {
+        return props.showError('You must be Logged into Toggle Done')
+      }
+      return firebase.set(`todos/${key}/completed`, !completed)
+    },
   })
 )
 

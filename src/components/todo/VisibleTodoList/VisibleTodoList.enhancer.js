@@ -1,35 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose, withHandlers } from 'recompose'
 import { populate, firebaseConnect } from 'react-redux-firebase'
 import { withRouter } from "react-router";
-import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import { withNotifications } from '../../notifications'
-import { spinnerWhileLoading } from '../../utils'
-import TodoList from "./TodoList";
-import FetchError from "../FetchError";
+import { withNotifications } from '../../../notifications'
+import { spinnerWhileLoading } from '../../../utils'
 
-const VisibleTodoList = ({toggleDone, filter, todos}) => (
-   <div>
-     { filter=='all' ? null :
-       <BreadcrumbsItem to={filter}>
-         {filter.charAt(0).toUpperCase() + filter.slice(1)}
-       </BreadcrumbsItem>
-     }
-     <TodoList
-       todos={todos.sort((a,b)=>a.key<b.key)}
-       onTodoClick={toggleDone}
-    />
-  </div>
-)
-VisibleTodoList.propTypes = {
-    filter: PropTypes.string.isRequired,
-    toggleDone: PropTypes.func.isRequired,
-    todos: PropTypes.arrayOf( PropTypes.object ).isRequired,
-};
-
-const enhancer = compose(
+export default compose(
   withNotifications,
   withRouter,
   connect( ( {
@@ -71,6 +47,3 @@ const enhancer = compose(
     },
   })
 )
-
-export default enhancer( VisibleTodoList )
-
